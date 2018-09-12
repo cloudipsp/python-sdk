@@ -1,0 +1,28 @@
+language: python
+
+sudo: false
+
+env:
+  - TOXENV=py24
+  - TOXENV=py27
+
+matrix:
+  include:
+    - python: 3.4
+      env:
+      - TOXENV=py34
+    - python: 3.5
+      env:
+      - TOXENV=py35
+    - python: 3.6
+      env:
+      - TOXENV=py36
+
+install:
+  - pip install tox pycodestyle nose coverage unittest2 requests
+
+script:
+  - tox
+
+after_success:
+  - nosetests --with-coverage --cover-package=cloudipsp

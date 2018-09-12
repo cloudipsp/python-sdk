@@ -1,0 +1,36 @@
+{
+  "merchant": {
+    "id": 1396424,
+    "secret": "test"
+  },
+  "checkout_data": {
+    "amount": "100",
+    "currency": "USD"
+  },
+  "order_data": {
+    "order_id": 14290
+  },
+  "order_full_data": {
+    "amount": "100",
+    "currency": "RUB"
+  },
+  "payment_p2p": {
+    "receiver_card_number": "4444555566661111",
+    "currency": "RUB",
+    "amount": "100"
+  },
+  "payment_pcidss_non3ds": {
+    "currency": "RUB",
+    "amount": "100",
+    "card_number": "4444555511116666",
+    "cvv2": "123",
+    "expiry_date": "1224"
+  },
+  "payment_pcidss_3ds": {
+    "currency": "RUB",
+    "amount": "100",
+    "card_number": "4444555566661111",
+    "cvv2": "123",
+    "expiry_date": "1224"
+  }
+}
