@@ -3,7 +3,8 @@ from setuptools import find_packages, setup
 from cloudipsp.configuration import __version__
 
 desc = """
-    Cloudipsp python sdk.
+    Cloudipsp python sdk. 
+    Docs   - https://docs.fondy.eu/
     README - https://github.com/cloudipsp/python-sdk/blob/master/README.md
   """
 
@@ -17,7 +18,7 @@ setup(
     version=__version__,
     url='https://github.com/cloudipsp/python-sdk/',
     license='MIT',
-    description='SDK for cloudipsp clients.',
+    description='Python SDK for cloudipsp clients.',
     long_description=desc,
     author='Dmitriy Miroshnikov',
     packages=find_packages(where='.', exclude=('tests*',)),
