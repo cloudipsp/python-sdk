@@ -4,7 +4,7 @@ from cloudipsp.configuration import __version__
 
 desc = """
     Cloudipsp python sdk.
-    README - https://github.com/dimoncheg12/python-sdk/blob/master/README.md
+    README - https://github.com/cloudipsp/python-sdk/blob/master/README.md
   """
 
 requires_list = [
@@ -15,7 +15,7 @@ requires_list = [
 setup(
     name='cloudipsp',
     version=__version__,
-    url='https://github.com/dimoncheg12/python-sdk/',
+    url='https://github.com/cloudipsp/python-sdk/',
     license='MIT',
     description='SDK for cloudipsp clients.',
     long_description=desc,

@@ -30,7 +30,7 @@ class PaymentTest(TestCase):
         self.assertIsInstance(response, list)
 
     def test_p2pcredit(self):
-        api = Api(merchant_id=1000, secret_key='test')
+        api = Api(merchant_id=1000, secret_key='testcredit')
         payment = Payment(api=api)
         response = payment.p2pcredit(self.data['payment_p2p'])
         self.assertEqual(response.get('response_status'), 'success')
