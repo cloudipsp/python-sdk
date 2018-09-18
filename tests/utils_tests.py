@@ -26,7 +26,7 @@ class UtilTest(TestCase):
         self.assertEqual(json, self.data['checkout_data'])
 
     def test_join_url(self):
-        join_url = utils.join_url("checkout", "order")
-        self.assertEqual(join_url, "checkout/order")
-        join_url = utils.join_url("order/", "3ds")
-        self.assertEqual(join_url, "order/3ds")
+        joined_url = utils.join_url("checkout", "order")
+        self.assertEqual(joined_url, "checkout/order")
+        joined_url = utils.join_url("order", "/3ds")
+        self.assertEqual(joined_url, "order/3ds")
