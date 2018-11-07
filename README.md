@@ -1,4 +1,4 @@
-# Cloudipsp Python SDK clien
+# Cloudipsp Python SDK client
 
 <p align="center">
   <img width="200" height="200" src="https://avatars0.githubusercontent.com/u/15383021?s=200&v=4">
@@ -10,7 +10,7 @@ A payment service provider (PSP) offers shops online services for accepting elec
 
 Requirements
 ------------
-- Python (2.4, 2.7, 3.3, 3.4, 3.5, 3.6)
+- Python (2.4, 2.7, 3.3, 3.4, 3.5, 3.6, 3.7)
 
 Dependencies
 ------------
@@ -30,7 +30,7 @@ api = Api(merchant_id=1396424,
           secret_key='test')
 checkout = Checkout(api=api)
 data = {
-    "currency": "RUB",
+    "currency": "USD",
     "amount": 10000
 }
 url = checkout.url(data).get('checkout_url')
