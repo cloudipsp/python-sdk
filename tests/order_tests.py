@@ -1,5 +1,7 @@
 from __future__ import absolute_import, unicode_literals
-from cloudipsp import Order, exceptions
+
+import json
+from cloudipsp import Order
 from .tests_helper import TestCase
 
 
@@ -34,10 +36,6 @@ class OrderTest(TestCase):
         self.assertEqual(response.get('response_status'), 'success')
         self.assertIn('reverse_status', response)
 
-    # def test_atol(self):
-    #    response = self.order.atol_logs(self.data['order_data'])
-    #    self.assertIsInstance(response, list)
-
     def test_capture(self):
         data = {
             'order_id': self.order_id
@@ -47,3 +45,35 @@ class OrderTest(TestCase):
         self.assertEqual(response.get('response_status'), 'success')
         self.assertEqual(response.get('order_id'), self.order_id)
         self.assertEqual(response.get('capture_status'), 'captured')
+
+    def test_settlement(self):
+        self.api.api_protocol = '2.0'
+        data = {
+            'operation_id': self.order_id,
+            'receiver': [
+                {
+                    'requisites': {
+                        'amount': 500,
+                        'merchant_id': 600001
+                    },
+                    'type': 'merchant'
+                },
+                {
+                    'requisites': {
+                        'amount': 500,
+                        'merchant_id': 700001
+                    },
+                    'type': 'merchant'
+                }
+            ]
+        }
+        data.update(self.data['order_full_data'])
+        data_capture = {
+            'order_id': self.order_id
+        }
+        data_capture.update(self.data['order_full_data'])
+        self.order.capture(data_capture)
+        response = self.order.settlement(data)
+        response_data = json.loads(response.get('data'))
+        self.assertEqual(response_data.get('order')['order_status'], 'created')
+        self.assertIn('payment_id', response_data.get('order'))

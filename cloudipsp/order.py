@@ -6,6 +6,27 @@ import cloudipsp.helpers as helper
 
 
 class Order(Resource):
+    def settlement(self, data):
+        """
+        Method for create split order
+        :param data: split order data
+        :return: api response
+        """
+        if self.api.api_protocol != '2.0':
+            raise Exception('This method allowed only for v2.0')
+        path = '/settlement/'
+        params = {
+            'order_type': data.get('order_type', 'settlement'),
+            'order_id': data.get('order_id') or helper.generate_order_id(),
+            'operation_id': data.get('operation_id', ''),
+            'receiver': data.get('receiver', [])
+        }
+        helper.check_data(params)
+        params.update(data)
+        result = self.api.post(path, data=params, headers=self.__headers__)
+
+        return self.response(result)
+
     def capture(self, data):
         """
         Method for capturing order
