@@ -63,7 +63,8 @@ class Checkout(Resource):
                 'start_time': recurring_data.get('start_time', ''),
                 'amount': recurring_data.get('amount', ''),
                 'every': recurring_data.get('every', ''),
-                'period': recurring_data.get('period', '')
+                'period': recurring_data.get('period', ''),
+                'readonly': recurring_data.get('readonly', ''),
             }
         }
 
