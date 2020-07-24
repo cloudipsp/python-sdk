@@ -51,6 +51,18 @@ class Checkout(Resource):
         """
         Method to generate checkout url with calendar
         :param data: order data
+        data = {
+            "currency": "UAH", -> currency ('UAH', 'RUB', 'USD')
+            "amount": 10000, -> amount of the order (int)
+            "recurring_data": {
+                "every": 1, -> frequency of the recurring order (int)
+                "amount": 10000, -> amount of the recurring order (int)
+                "period": 'month', -> period of the recurring order ('day', 'month', 'year')
+                "start_time": '2020-07-24', -> start date of the recurring order ('YYYY-MM-DD')
+                "readonly": 'y', -> possibility to change parameters of the recurring order by user ('y', 'n')
+                "state": 'y' -> default state of the recurring order after opening url of the order ('y', 'n')
+            }
+        }
         :return: api response
         """
         if self.api.api_protocol != '2.0':
@@ -65,6 +77,7 @@ class Checkout(Resource):
                 'every': recurring_data.get('every', ''),
                 'period': recurring_data.get('period', ''),
                 'readonly': recurring_data.get('readonly', ''),
+                'state': recurring_data.get('state', '')
             }
         }
 
