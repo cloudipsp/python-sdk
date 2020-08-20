@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from cloudipsp.resources import Resource
 from datetime import datetime
 
+from cloudipsp.exceptions import RequestError
 import cloudipsp.helpers as helper
 
 
@@ -108,6 +109,20 @@ class Payment(Resource):
         params.update(data)
         result = self.api.post(path, data=params, headers=self.__headers__)
         return self.response(result)
+
+    def capture_hold(self, data):
+        """
+        Method to capture the previously held payment
+        :param data: order data
+        :return: api response
+        """
+        if 'order_id' not in data:
+            raise RequestError('order_id')
+        path = '/capture/order_id'
+        helper.check_data(data)
+        result = self.api.post(path, data=data, headers=self.__headers__)
+        return self.response(result)
+
 
     @staticmethod
     def _validate_reports_date(date):
