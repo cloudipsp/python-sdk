@@ -89,6 +89,18 @@ class Checkout(Resource):
 
         return self.response(result)
 
+    def subscription_stop(self, order_id):
+        """
+          Stop calendar payments
+        """
+        if self.api.api_protocol != '2.0':
+            raise Exception('This method allowed only for v2.0')
+        path = '/subscription/'
+        params = {'order_id': order_id, 'action': 'stop'}
+        result = self.api.post(path, data=params, headers=self.__headers__)
+
+        return self.response(result)
+
     @staticmethod
     def _validate_recurring_data(data):
         """
