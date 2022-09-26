@@ -25,7 +25,7 @@ class OrderTest(TestCase):
         }
         response = self.order.transaction_list(data)
         self.assertIsInstance(response, list)
-        self.assertIn('order_id', response[0])
+        self.assertIn('order_id', response[0] if len(response) else '')
 
     def test_refund(self):
         data = {

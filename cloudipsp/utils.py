@@ -120,7 +120,11 @@ def _data2xml(d):
 
 def _parse(node):
     tree = {}
-    for c in node.getchildren():
+    try:
+        parsed_node = node.getchildren()
+    except AttributeError:
+        parsed_node = list(node)
+    for c in parsed_node:
         c_tag = c.tag
         c_attr = c.attrib
         ctext = c.text.strip() if c.text is not None else ''
